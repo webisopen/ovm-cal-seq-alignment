@@ -1,0 +1,12 @@
+cytoolz==1.0.0
+eth-hash==0.7.0
+eth-typing==5.0.0
+eth-utils==5.0.0
+eth_abi==5.1.0
+grpcio==1.66.2
+hexbytes==1.2.1
+parsimonious==0.10.0
+protobuf==5.28.2
+regex==2024.9.11
+toolz==1.0.0
+typing_extensions==4.12.2
