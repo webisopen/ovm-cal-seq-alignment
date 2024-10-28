@@ -1,0 +1,2 @@
+# Lints
+lint :; forge fmt

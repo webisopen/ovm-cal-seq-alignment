@@ -1,7 +1,7 @@
 pragma solidity 0.8.24;
 
-import {Test} from "forge-std/Test.sol";
 import {Pi, ResponseParsed} from "../src/Pi.sol";
+import {Test} from "forge-std/Test.sol";
 
 contract PiTest is Test {
     address public constant alice = address(0x1111);

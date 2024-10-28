@@ -2,12 +2,8 @@
 
 This is a demo repo using OVM contracts lib to calculate Pi onchain.
 
-`./prgrams` contains the python code for computing task.
 `./src` is the main entry for the contract code.
 
-## Documentation
-
-https://book.getfoundry.sh/
 
 ## Usage
 
@@ -29,34 +25,27 @@ $ forge test
 $ forge fmt
 ```
 
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
 ### Deploy
 
 ```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+# With verification
+forge script script/Deploy.s.sol:Deploy \
+--chain-id $CHAIN_ID \
+--rpc-url $RPC_URL \
+--private-key $PRIVATE_KEY \
+--verifier-url $VERIFIER_URL \
+--verifier $VERIFIER \
+--verify \
+--broadcast --ffi -vvvv
 
-### Cast
+# Without verification
+forge script script/Deploy.s.sol:Deploy \
+--chain-id $CHAIN_ID \
+--rpc-url $RPC_URL \
+--private-key $PRIVATE_KEY \
+--broadcast --ffi -vvvv
 
-```shell
-$ cast <subcommand>
-```
 
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+# generate easily readable abi to /deployments
+forge script script/Deploy.s.sol:Deploy --sig 'sync()' --rpc-url $RPC_URL --broadcast --ffi
 ```

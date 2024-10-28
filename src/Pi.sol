@@ -2,7 +2,12 @@
 pragma solidity ^0.8.13;
 
 import {OVMClient} from "@webisopen/ovm-contracts/src/OVMClient.sol";
-import {ExecMode, Requirement, Specification, Arch} from "@webisopen/ovm-contracts/src/libraries/DataTypes.sol";
+import {
+    Arch,
+    ExecMode,
+    Requirement,
+    Specification
+} from "@webisopen/ovm-contracts/src/libraries/DataTypes.sol";
 
 event ResponseParsed(bytes32 requestId, bool success, string strPI);
 
@@ -27,7 +32,8 @@ contract Pi is OVMClient {
         spec.repoTag = "0xb6a6502fa480fd1fb5bf95c1fb1366bcbc335a08356c2a97daf6bc44e9cc0253";
         spec.license = "WTFPL";
         spec.entrypoint = "src/main.py";
-        spec.requirement = Requirement({ram: "256mb", disk: "5mb", timeout: 600, cpu: 1, gpu: false});
+        spec.requirement =
+            Requirement({ram: "256mb", disk: "5mb", timeout: 600, cpu: 1, gpu: false});
         spec.apiABIs =
             '[{"request":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"},"getResponse":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"}}]';
         spec.royalty = 5;
