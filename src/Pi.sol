@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 import {OVMClient} from "@webisopen/ovm-contracts/src/OVMClient.sol";
-import {ExecMode, Requirement, Specification} from "@webisopen/ovm-contracts/src/libraries/DataTypes.sol";
+import {ExecMode, Requirement, Specification, Arch} from "@webisopen/ovm-contracts/src/libraries/DataTypes.sol";
 
 event ResponseParsed(bytes32 requestId, bool success, string strPI);
 
@@ -32,6 +32,7 @@ contract Pi is OVMClient {
             '[{"request":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"},"getResponse":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"}}]';
         spec.royalty = 5;
         spec.execMode = ExecMode.JIT;
+        spec.arch = Arch.ARM64;
 
         _updateSpecification(spec);
     }
