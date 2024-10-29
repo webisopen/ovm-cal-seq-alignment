@@ -24,12 +24,12 @@ contract Pi is OVMClient {
     constructor(address OVMTaskAddress, address admin) OVMClient(OVMTaskAddress, admin) {
         // set specification
         Specification memory spec;
-        spec.name = "kallypi";
+        spec.name = "ovm-cal-pi";
         spec.version = "1.0.0";
         spec.description = "Calculate PI";
         spec.environment = "python:3.7";
-        spec.repository = "https://github.com/kallydev/kallypi";
-        spec.repoTag = "0xb6a6502fa480fd1fb5bf95c1fb1366bcbc335a08356c2a97daf6bc44e9cc0253";
+        spec.repository = "https://github.com/webisopen/ovm-cal-pi";
+        spec.repoTag = "9231c80a6cba45c8ff9a1d3ba19e8596407e8850";
         spec.license = "WTFPL";
         spec.entrypoint = "src/main.py";
         spec.requirement =
