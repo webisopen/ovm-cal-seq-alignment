@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 import {OVMClient} from "@webisopen/ovm-contracts/src/OVMClient.sol";
-import {Arch, ExecMode, Requirement, Specification} from "@webisopen/ovm-contracts/src/libraries/DataTypes.sol";
+import {Arch, ExecMode, GPUModel, Requirement, Specification} from "@webisopen/ovm-contracts/src/libraries/DataTypes.sol";
 
 event ResponseParsed(bytes32 requestId, bool success, string strPI);
 
@@ -25,17 +25,16 @@ contract Pi is OVMClient {
         spec.name = "ovm-cal-pi";
         spec.version = "1.0.0";
         spec.description = "Calculate PI";
-        spec.environments = "python:3.7";
         spec.repository = "https://github.com/webisopen/ovm-cal-pi";
         spec.repoTag = "9231c80a6cba45c8ff9a1d3ba19e8596407e8850";
         spec.license = "WTFPL";
-        spec.entrypoint = "src/main.py";
         spec.requirement = Requirement({
             ram: "256mb",
             disk: "5mb",
             timeout: 600,
             cpu: 1,
-            gpu: false
+            gpu: 0,
+            gpuModel: GPUModel.T4
         });
         spec
             .apiABIs = '[{"request": {"type":"function","name":"sendRequest","inputs":[{"name":"numDigits","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"stateMutability":"payable"},"getResponse":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"}}]';
