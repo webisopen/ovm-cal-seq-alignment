@@ -25,7 +25,7 @@ contract Pi is OVMClient {
         spec.name = "ovm-cal-pi";
         spec.version = "1.0.0";
         spec.description = "Calculate PI";
-        spec.repository = "https://github.com/webisopen/ovm-cal-pi";
+        spec.repository = "https://github.com/webisopen/ovm-pi";
         spec.repoTag = "9231c80a6cba45c8ff9a1d3ba19e8596407e8850";
         spec.license = "WTFPL";
         spec.requirement = Requirement({
