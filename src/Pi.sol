@@ -72,7 +72,7 @@ contract Pi is OVMClient {
     function setResponse(
         bytes32 requestId,
         bytes calldata data
-    ) external override recordResponse(requestId) onlyOVMTask {
+    ) external override recordResponse(requestId) onlyOVMGateway {
         // parse and save the data fulfilled by the OVMTasks contract
         (bool success, string memory strPI) = _parseData(data);
         if (success) {
