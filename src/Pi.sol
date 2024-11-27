@@ -40,7 +40,7 @@ contract Pi is OVMClient {
             .apiABIs = '[{"request": {"type":"function","name":"sendRequest","inputs":[{"name":"numDigits","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"stateMutability":"payable"},"getResponse":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"}}]';
         spec.royalty = 5;
         spec.execMode = ExecMode.JIT;
-        spec.arch = Arch.ARM64;
+        spec.arch = Arch.AMD64;
 
         _updateSpecification(spec);
     }
