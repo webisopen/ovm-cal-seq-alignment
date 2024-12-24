@@ -10,12 +10,12 @@ import {
     Specification
 } from "@webisopen/ovm-contracts/src/libraries/DataTypes.sol";
 
-event ResponseParsed(bytes32 requestId, bool success, string strPI);
+event ResponseParsed(bytes32 requestId, bool success, string seqParsed);
 
-contract Pi is OVMClient {
+contract SeqAlign is OVMClient {
     bool public constant REQ_DETERMINISTIC = true;
 
-    mapping(bytes32 requestId => string _strPI) internal _responseData;
+    mapping(bytes32 requestId => string _seqParsed) internal _responseData;
 
     /**
      * @dev Constructor function for the PI contract.
@@ -27,9 +27,9 @@ contract Pi is OVMClient {
         Specification memory spec;
         spec.name = "ovm-cal-pi";
         spec.version = "1.0.0";
-        spec.description = "Calculate PI";
-        spec.repository = "https://github.com/webisopen/ovm-pi";
-        spec.repoTag = "9231c80a6cba45c8ff9a1d3ba19e8596407e8850";
+        spec.description = "Sequence Alignment";
+        spec.repository = "https://github.com/webisopen/seq-aligner";
+        spec.repoTag = "contract-v0.1.0";
         spec.license = "WTFPL";
         spec.requirement = Requirement({
             ram: "256mb",
@@ -49,13 +49,14 @@ contract Pi is OVMClient {
     }
 
     /**
-     * @dev Sends a request to calculate the value of PI with a specified number of digits.
-     * @param numDigits The number of digits to calculate for PI.
+     * @dev Sends a request to align two sequences.
+     * @param seq1 The first sequence to align(in url format).
+     * @param seq2 The second sequence to align(in url format).
      * @return requestId The ID of the request returned by the OVMGateway contract.
      */
-    function sendRequest(uint256 numDigits) external payable returns (bytes32 requestId) {
-        // encode the data
-        bytes memory data = abi.encode(numDigits);
+    function sendRequest(string calldata seq1, string calldata seq2) external payable returns (bytes32 requestId) {
+        // encode the two sequences
+        bytes memory data = abi.encode(seq1, seq2);
         requestId = _sendRequest(msg.sender, msg.value, REQ_DETERMINISTIC, data);
     }
 
@@ -72,12 +73,12 @@ contract Pi is OVMClient {
         onlyOVMGateway
     {
         // parse and save the data fulfilled by the OVMGateway contract
-        (bool success, string memory strPI) = _parseData(data);
+        (bool success, string memory seqParsed) = _parseData(data);
         if (success) {
-            _responseData[requestId] = strPI;
+            _responseData[requestId] = seqParsed;
         }
 
-        emit ResponseParsed(requestId, success, strPI);
+        emit ResponseParsed(requestId, success, seqParsed);
     }
 
     /**

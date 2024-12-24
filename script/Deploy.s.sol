@@ -2,7 +2,7 @@
 // solhint-disable no-console,ordering,custom-errors
 pragma solidity 0.8.24;
 
-import {Pi} from "../src/Pi.sol";
+import {SeqAlign} from "../src/SeqAlign.sol";
 import {DeployConfig} from "./DeployConfig.s.sol";
 import {Deployer} from "./Deployer.sol";
 import {TransparentUpgradeableProxy} from
@@ -44,7 +44,7 @@ contract Deploy is Deployer {
 
     /// @notice Deploy all of the proxies
     function deployProxies() public {
-        deployProxy("Pi");
+        deployProxy("SeqAlign");
     }
 
     function deployProxy(string memory name_) public broadcast returns (address addr_) {
@@ -64,15 +64,15 @@ contract Deploy is Deployer {
 
     /// @notice Deploy all of the logic contracts
     function deployImplementations() public broadcast {
-        deployPi();
+        deploySeqAlign();
     }
 
-    function deployPi() public returns (address addr) {
-        console.log("Deploying Pi.sol");
-        Pi pi = new Pi(_cfg.ovmTaskAddress(), _cfg.templateAdmin());
+    function deploySeqAlign() public returns (address addr) {
+        console.log("Deploying SeqAlign.sol");
+        SeqAlign seqAlign = new SeqAlign(_cfg.ovmTaskAddress(), _cfg.templateAdmin());
 
-        save("Pi", address(pi));
-        console.log("Pi deployed at %s", address(pi));
-        addr = address(pi);
+        save("SeqAlign", address(seqAlign));
+        console.log("SeqAlign deployed at %s", address(seqAlign));
+        addr = address(seqAlign);
     }
 }
