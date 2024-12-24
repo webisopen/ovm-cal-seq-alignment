@@ -25,9 +25,9 @@ contract SeqAlign is OVMClient {
     constructor(address OVMGatewayAddress, address admin) OVMClient(OVMGatewayAddress, admin) {
         // set specification
         Specification memory spec;
-        spec.name = "ovm-cal-pi";
+        spec.name = "sequence-aligner";
         spec.version = "1.0.0";
-        spec.description = "Sequence Alignment";
+        spec.description = "Sequence Aligner";
         spec.repository = "https://github.com/webisopen/seq-aligner";
         spec.repoTag = "contract-v0.1.0";
         spec.license = "WTFPL";
@@ -40,7 +40,7 @@ contract SeqAlign is OVMClient {
             gpuModel: GPUModel.T4
         });
         spec.apiABIs =
-            '[{"request": {"type":"function","name":"sendRequest","inputs":[{"name":"numDigits","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"stateMutability":"payable"},"getResponse":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"}}]';
+            '[{"request":{"type":"function","name":"sendRequest","inputs":[{"name":"seq1","type":"string","internalType":"string"},{"name":"seq2","type":"string","internalType":"string"}],"outputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"stateMutability":"payable"},"getResponse":{"type":"function","name":"getResponse","inputs":[{"name":"requestId","type":"bytes32","internalType":"bytes32"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"view"}}]';
         spec.royalty = 5;
         spec.execMode = ExecMode.JIT;
         spec.arch = Arch.AMD64;
